@@ -6,6 +6,7 @@ app.set('views', './views');
 
 app.use('/store', function(req, res, next) {
 	console.log('Jestem pośrednikiem przy żadaniu /store');
+	next();
 });
 
 app.get('/store', function(req, res) {
@@ -20,4 +21,11 @@ app.get('/google', function(req,res) {
 	res.render('google');
 });
 
+app.get('/auth/google', function(req,res) {
+	res.render('auth');
+});
+
 app.listen(3000);
+app.use(function(req, res, next) {
+	res.status(404).send('Nie ma!')
+});
